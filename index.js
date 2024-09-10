@@ -6,9 +6,17 @@ const saveModalBtn = document.querySelector('.pop-btn.save');
 const sizeInput = document.querySelector('#size');
 const defaultSize = 16;
 
+function getRandomNumber(max){
+    return Math.floor(Math.random() * max + 1)
+}
+
+function getRandomColor(){
+    return `rgb(${getRandomNumber(255)}, ${getRandomNumber(255)}, ${getRandomNumber(255)})`
+}
+
 function changeCellBackground(e){
     if(e.target.classList.contains('cell')){
-      e.target.style.background = 'black';  
+      e.target.style.background = getRandomColor();  
     }
 }
 
