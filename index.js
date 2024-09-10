@@ -11,12 +11,24 @@ function getRandomNumber(max){
 }
 
 function getRandomColor(){
-    return `rgb(${getRandomNumber(255)}, ${getRandomNumber(255)}, ${getRandomNumber(255)})`
+    return `rgba(${getRandomNumber(255)}, ${getRandomNumber(255)}, ${getRandomNumber(255)}, 0.1)`
+}
+
+function getRGBAValuesFromColor(color){
+    const [r, g, b, a] = color.slice(5, color.length - 1).split(',');
+    return {r, g, b, a}
 }
 
 function changeCellBackground(e){
     if(e.target.classList.contains('cell')){
-      e.target.style.background = getRandomColor();  
+      const target = e.target;
+      const targetBg = window.getComputedStyle(target).backgroundColor;
+      if(targetBg == 'rgba(0, 0, 0, 0)'){
+        target.style.background = getRandomColor(); 
+      } else{
+        const {r,g,b,a} = getRGBAValuesFromColor(targetBg);
+        target.style.background = `rgba(${r}, ${g}, ${b}, ${+a + .1})`
+      }
     }
 }
 
