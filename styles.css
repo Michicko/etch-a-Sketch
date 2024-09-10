@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 960px;
+}
+
+.row{
+    display: flex;
+}
+
+.cell{
+    border: 1px solid lightgray;
+    height: 30px;
+    width: 30px;
+}
