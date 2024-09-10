@@ -8,7 +8,10 @@ body{
     overflow: hidden;
     height: 100vh;
     width: 100%;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;gap: 20px;
+    padding: 10px;
 }
 
 #container{
@@ -16,7 +19,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 960px;
+    width: 500px;
 }
 
 .row{
@@ -25,6 +28,64 @@ body{
 
 .cell{
     border: 1px solid lightgray;
-    height: 30px;
-    width: 30px;
+    /* height: 30px; */
+    /* width: 30px; */
 }
+
+button{
+    padding: 10px 20px ;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: serif;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.5);
+    transform: translateY(-100%);
+    transition: transform .4s ease-in;
+}
+
+.modal.open{
+    transform: translateY(0);
+}
+
+.popup{
+    max-width: 350px;
+    margin: 20px auto;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, .4);
+    padding: 10px;
+    background: white;
+}
+
+.popup-group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup .btns{
+    display: flex;
+    gap: 10px;
+}
+
+label{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.popup-group input{
+    padding: 10px;
+}
+
+.popup button{
+    width: 50%;
+    margin-top: 10px;
+}
+

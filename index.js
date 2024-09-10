@@ -1,23 +1,50 @@
 const container = document.querySelector('#container');
+const modal = document.querySelector('.modal');
+const modalBtn = document.querySelector('.prompt-btn');
+const cancelModalBtn = document.querySelector('.pop-btn.cancel');
+const saveModalBtn = document.querySelector('.pop-btn.save');
+const sizeInput = document.querySelector('#size');
+const defaultSize = 16;
 
 function changeCellBackground(e){
-    console.log(e.target);
-    e.target.style.background = 'black';
+    if(e.target.classList.contains('cell')){
+      e.target.style.background = 'black';  
+    }
 }
 
-function createCell(){
+function openModal(){
+    modal.classList.add('open');
+}
+
+function closeModal(){
+    modal.classList.remove('open');
+}
+
+function saveSizeInput(){
+    const size = sizeInput.value;
+    container.innerHTML = '';
+    createGrid(size, size);
+    closeModal();
+    sizeInput.value = '';
+}
+
+function createCell(totalCells){
     const cell = document.createElement('div');
-    cell.classList.add('cell'); 
+    cell.classList.add('cell');
+    const containerSize = container.clientWidth;
+    const cellSize = Math.floor(containerSize / totalCells);
+    cell.style.height = `${cellSize}px`;    
+    cell.style.width = `${cellSize}px`;   
     return cell;
 }
 
-function createSquareDivs(rows, cols){
+function createGrid(rows, cols){
     const row = document.createElement('div');
     row.classList.add('row');
     let cells = [];
 
     for(let j = 1; j <= cols; j++){
-        cells.push(createCell());
+        cells.push(createCell(rows));
     }
 
     for(let i = 1; i <= rows; i++){
@@ -26,4 +53,9 @@ function createSquareDivs(rows, cols){
     }
 }
 
-createSquareDivs(16, 16);
+
+createGrid(defaultSize, defaultSize);
+container.addEventListener('mouseover', changeCellBackground);
+modalBtn.addEventListener('click', openModal);
+cancelModalBtn.addEventListener('click', closeModal);
+saveModalBtn.addEventListener('click', saveSizeInput);
